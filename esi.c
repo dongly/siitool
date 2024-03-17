@@ -739,6 +739,17 @@ static int parse_pdo_get_data_type(char *xmldatatype)
 		{ 0x001A, "UNSIGNED56", "UINT56" },
 		{ 0x001B, "UNSIGNED64", "UINT64" },
 		//{ 0x001C-0x001F, "reserved", "" },
+		{ 0x002D, "BITARR8", "BITARR8" },
+		{ 0x002E, "BITARR16", "BITARR16" },
+		{ 0x002F, "BITARR32", "BITARR32" },
+		{ 0x0030, "BIT1", "BIT1" },
+		{ 0x0031, "BIT2", "BIT2" },
+		{ 0x0032, "BIT3", "BIT3" },
+		{ 0x0033, "BIT4", "BIT4" },
+		{ 0x0034, "BIT5", "BIT5" },
+		{ 0x0035, "BIT6", "BIT6" },
+		{ 0x0036, "BIT7", "BIT7" },
+		{ 0x0037, "BIT8", "BIT8" },
 		{ 0, NULL, NULL }
 	};
 
@@ -857,7 +868,7 @@ static void parse_pdo(xmlNode *current, SiiInfo *sii, int include_pdo_strings)
 	for (xmlNode *val = current->children; val; val = val->next) {
 		if (xmlStrncmp(val->name, Char2xmlChar("Name"), xmlStrlen(val->name)) == 0) {
 			int tmp = 0;
-            if (include_pdo_strings)
+			if (include_pdo_strings)
 			    tmp = sii_strings_add(sii, (char *)val->children->content);
 			if (tmp < 0) {
 				fprintf(stderr, "Error creating input string!\n");
